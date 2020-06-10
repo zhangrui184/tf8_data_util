@@ -3,7 +3,7 @@ import struct
 
 from tensorflow.core.example import example_pb2
 file_path="D:\python project me\data\my_piont_play/train/train_small3.txt"
-file_out_file="D:\python project me\data\my_piont_play/train/train_bin3.bin"
+file_out_file="D:\python project me\data\my_piont_play/train/train_small3.bin"
 
 def read_text_file(text_file):
     lines = []
