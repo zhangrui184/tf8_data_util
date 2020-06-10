@@ -3,9 +3,10 @@ import sys
 import struct
 import replace_s_to_none as replace
 from tensorflow.core.example import example_pb2
-file_path="D:\python project me\data\my_piont_play/train/train_small3.bin"
-file_out_file="D:\python project me\data\my_piont_play/train/train_small3_bin_to_txt.txt"
-
+#file_path="/home/ddd/data/cnndailymail3/finished_files/train.bin"
+#file_out_file="/home/ddd/data/cnndailymail3/finished_files/original/train/train_bin_to_txt.txt"
+file_path="/home/ddd/data/cnndailymail3/finished_files/test.bin"
+file_out_file="/home/ddd/data/cnndailymail3/finished_files/original/test_bin_to_txt.txt"
 def _binary_to_text():
     reader = open(file_path, 'rb')
     writer = open(file_out_file, 'w')
@@ -37,7 +38,7 @@ def _binary_to_text():
             exp = exp.replace("</s>", "")
             exp = exp.replace(" ", "")
             examples_txts.append(exp)
-            if len(examples_txts)%2 ==0 :
+            if len(examples_txts)%100000 ==0 :
                sys.stderr.write('already replace the %s s sentences\n' % ''.join(str(len(examples_txts))))
 
 
