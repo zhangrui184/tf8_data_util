@@ -1,9 +1,11 @@
 import sys
 import struct
-
+import replace_s_to_none as replace
 from tensorflow.core.example import example_pb2
 file_path="D:\python project me\data\my_piont_play/train/train_bin3.bin"
 file_out_file="D:\python project me\data\my_piont_play/train/train_bin_to_txt3.txt"
+file_out_file_none="D:\python project me\data\my_piont_play/train/train_bin_to_txt3_none.txt"
+file_out_file_none_jion="D:\python project me\data\my_piont_play/train/train_bin_to_txt3_none_jion.txt"
 def _binary_to_text():
     reader = open(file_path, 'rb')
     writer = open(file_out_file, 'w')
@@ -35,3 +37,5 @@ def _binary_to_text():
     #writer.close()
 
 _binary_to_text()
+replace.replace(file_out_file,file_out_file_none)
+replace.jion(file_out_file_none,file_out_file_none_jion)
