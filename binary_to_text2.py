@@ -1,16 +1,14 @@
-#.bin to .txt by three steps using relpace_s_to_none.py
+#.bin to .txt directly
 import sys
 import struct
 import replace_s_to_none as replace
 from tensorflow.core.example import example_pb2
 file_path="D:\python project me\data\my_piont_play/train/train_bin3.bin"
 file_out_file="D:\python project me\data\my_piont_play/train/train_bin_to_txt3.txt"
-file_out_file_none="D:\python project me\data\my_piont_play/train/train_bin_to_txt3_none.txt"
-file_out_file_none_jion="D:\python project me\data\my_piont_play/train/train_bin_to_txt3_none_jion.txt"
+
 def _binary_to_text():
     reader = open(file_path, 'rb')
     writer = open(file_out_file, 'w')
-   # with open(file_out_file,"w"):
     examples_txts = []
     while True:
         len_bytes = reader.read(8)
@@ -21,22 +19,16 @@ def _binary_to_text():
         tf_example_str = struct.unpack('%ds' % str_len, reader.read(str_len))[0]
         tf_example = example_pb2.Example.FromString(tf_example_str)
         examples = []
-        #for key in tf_example.features.feature:
-        #    examples.append('%s=%s' % (key, tf_example.features.feature[key].bytes_list.value[0]))
+
         for key in tf_example.features.feature:
-           # examples.append('%s' % (tf_example.features.feature[key].bytes_list.value[0]))
             examples.append(tf_example.features.feature[key].bytes_list.value[0])
 
         for exp in examples:
             examples_txt=exp.decode()
-            examples_txts.append(examples_txt)
-
-       # writer.write('%s\n' % '\t'.join(examples_txts))
+            examples_txt_none=examples_txt.replace("<s>", "")
+            examples_txt_none=examples_txt_none.replace("</s>", "")
+            examples_txt_none=examples_txt_none.replace(" ", "")
+            examples_txts.append(examples_txt_none)
         writer.write('%s\n' % '\n'.join(examples_txts))
-       # writer.write('%s\n' % '\t'.join(examples))
-   # reader.close()
-    #writer.close()
 
 _binary_to_text()
-replace.replace(file_out_file,file_out_file_none)
-replace.jion(file_out_file_none,file_out_file_none_jion)

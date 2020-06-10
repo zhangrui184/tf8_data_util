@@ -1,5 +1,5 @@
-#可以replace <s>和</s>，并且去掉空格，连成句子
-
+#replace <s> and </s>，remove the " " to ""，jion the token to sentence
+#help binary_to_text2.py，can run but not use finally
 import sys
 
 
