@@ -29,7 +29,7 @@ def _binary_to_text():
             examples_txt_none=examples_txt_none.replace("</s>", "")
             examples_txt_none=examples_txt_none.replace(" ", "")
             examples_txts.append(examples_txt_none)
-            sys.stderr.write('already replace the %s s sentences\n' % '\n'.join(str(len(examples_txts))))
+            sys.stderr.write('already replace the %s s sentences\n' % ''.join(str(len(examples_txts))))
         writer.write('%s\n' % '\n'.join(examples_txts))
 
 _binary_to_text()
